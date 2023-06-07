@@ -1,6 +1,6 @@
 {
   "name": "roar-repackage",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Roar refactor test",
   "main": "./src/index.js",
   "type": "module",
@@ -24,7 +24,9 @@
     "prepublish": "babel src --out-dir lib"
   },
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   },
   "author": "Philip and Adam",
   "license": "Stanford Academic Software License for ROAR",
