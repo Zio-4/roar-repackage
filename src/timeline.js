@@ -118,5 +118,5 @@ export const buildTimeline = (config) => {
 
     timeline.push(exit_fullscreen);
 
-    return timeline;
+    return {jsPsych, timeline};
 }

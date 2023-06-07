@@ -57,11 +57,19 @@ export const initConfig = async (firekit, params) => {
       userMetadata: config.userMetadata,
     };
 
-    config.firekit = new RoarFirekit({
-      config: roarConfig,
-      userInfo: userInfo,
-      taskInfo,
-    });
+    config.firekit.userInfo = userInfo
+
+    // config.firekit.updateUser()
+
+    config.firekit.taskInfo = taskInfo
+
+    // config.firekit.updateTask()
+
+    // config.firekit = new RoarFirekit({
+    //   config: roarConfig,
+    //   userInfo: userInfo,
+    //   taskInfo,
+    // });
 
     await config.firekit.startRun();
   }
@@ -205,11 +213,14 @@ export const initRoarTimeline = (config) => {
       };
 
       // eslint-disable-next-line no-param-reassign
-      config.firekit = new RoarFirekit({
-        config: config.firekit.config,
-        userInfo: config.firekit.userInfo,
-        taskInfo,
-      });
+
+      config.firekit.userInfo = userInfo
+      config.firekit.taskInfo = taskInfo
+      // config.firekit = new RoarFirekit({
+      //   config: config.firekit.config,
+      //   userInfo: config.firekit.userInfo,
+      //   taskInfo,
+      // });
 
       await config.firekit.startRun();
     },

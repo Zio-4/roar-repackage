@@ -6,18 +6,19 @@ import './css/roar.css';
 
 export class HotDogApp {
   constructor (firekit, params) {
-    const { pid, classId, schoolId } = params;
     // TODO: Add validation of params so that if any are missing, we throw an error
-    this.pid = pid
-    this.studyId = studyId
-    this.classId = classId
-    this.schoolId = schoolId
-    this.config = initConfig(firekit, params);
-    this.timeline = buildTimeline(this.config);
+    this.params = params
+    this.firekit = firekit
   }
 
-  run() {
-    jsPsych.run(this.timeline);
+  async init() {
+    const config = await initConfig(this.firekit, this.params);
+    return buildTimeline(config);
+  }
+
+  async run() {
+    const { jsPsych, timeline } = await this.init()
+    jsPsych.run(timeline);
   }
 } 
 
