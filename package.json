@@ -1,6 +1,6 @@
 {
   "name": "roar-repackage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Roar refactor test",
   "main": "./src/index.js",
   "type": "module",
@@ -20,11 +20,14 @@
     "bundle:prod": "npm run bundle --silent -- --env dbmode=production",
     "serve": "npx webpack serve --open --mode development",
     "serve:dev": "npm run serve --silent -- --env dbmode=development",
-    "serve:prod": "npm run serve --silent -- --env dbmode=production"
+    "serve:prod": "npm run serve --silent -- --env dbmode=production",
+    "prepublish": "babel src --out-dir lib"
+  },
+  "babel": {
+    "presets": ["es2015"]
   },
   "author": "Philip and Adam",
   "license": "Stanford Academic Software License for ROAR",
-
   "dependencies": {
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
@@ -60,6 +63,9 @@
     "webpack-dev-server": "^4.7.4"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
     "css-loader": "^6.7.1",
     "eslint": "^8.12.0",
     "eslint-config-airbnb-base": "^15.0.0",
