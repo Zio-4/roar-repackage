@@ -135,9 +135,9 @@ export const initRoarJsPsych = (config) => {
 
   jsPsych.opts.on_data_update = extend(jsPsych.opts.on_data_update, (data) => {
     if (data.save) {
-      config.firekit?.writeTrial({
+      config.firekit.writeTrial({
         timingData,
-        userInfo: config.firekit?.userInfo,
+        userInfo: config.firekit.userInfo,
         ...data,
       });
     }

@@ -2,7 +2,7 @@
   "name": "roar-repackage",
   "version": "1.0.2",
   "description": "Roar refactor test",
-  "main": "./src/index.js",
+  "main": "./lib/index.js",
   "type": "module",
   "files": [
     "./src/assets",
@@ -21,18 +21,16 @@
     "serve": "npx webpack serve --open --mode development",
     "serve:dev": "npm run serve --silent -- --env dbmode=development",
     "serve:prod": "npm run serve --silent -- --env dbmode=production",
-    "prepublish": "babel src --out-dir lib"
+    "build": "babel src --out-dir lib"
   },
   "babel": {
     "presets": [
-      "es2015"
+      "@babel/preset-env"
     ]
   },
   "author": "Philip and Adam",
   "license": "Stanford Academic Software License for ROAR",
   "dependencies": {
-    "@babel/core": "^7.17.8",
-    "@babel/preset-env": "^7.16.11",
     "@bdelab/jscat": "^3.0.3",
     "@bdelab/roar-firekit": "1.1.2",
     "@jspsych-contrib/plugin-audio-multi-response": "^1.0.0",
@@ -48,32 +46,32 @@
     "@jspsych/plugin-survey-multi-select": "^1.1.0",
     "@jspsych/plugin-survey-text": "^1.1.0",
     "@jspsych/plugin-video-button-response": "^1.1.2",
-    "babel-loader": "^8.2.4",
     "detect-it": "^4.0.1",
-    "file-loader": "^6.2.0",
-    "folder-hash": "^4.0.2",
     "fscreen": "^1.2.0",
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.0.1",
     "jspsych": "^7.2.1",
     "papaparse": "^5.3.2",
-    "regenerator-runtime": "^0.13.9",
     "roarr": "^7.14.0",
-    "store2": "^2.13.2",
-    "webpack": "^5.70.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "store2": "^2.13.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.22.1",
+    "@babel/preset-env": "^7.22.4",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-loader": "^9.1.2",
     "css-loader": "^6.7.1",
     "eslint": "^8.12.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
+    "file-loader": "^6.2.0",
+    "folder-hash": "^4.0.2",
     "html-webpack-plugin": "^5.5.0",
+    "regenerator-runtime": "^0.13.9",
     "style-loader": "^3.3.1",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
     "webpack-merge": "^5.8.0"
   }
 }
