@@ -3,7 +3,6 @@
   "version": "1.0.5",
   "description": "Roar refactor test",
   "main": "lib/index.js",
-  "type": "module",
   "files": [
     "./src/assets",
     "./src/css",
@@ -21,12 +20,7 @@
     "serve": "npx webpack serve --open --mode development",
     "serve:dev": "npm run serve --silent -- --env dbmode=development",
     "serve:prod": "npm run serve --silent -- --env dbmode=production",
-    "build": "babel src --out-dir lib"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
+    "build": "babel src -d lib"
   },
   "author": "Philip and Adam",
   "license": "Stanford Academic Software License for ROAR",
@@ -57,8 +51,8 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.22.5",
-    "@babel/core": "^7.22.1",
-    "@babel/preset-env": "^7.22.4",
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.1",
     "eslint": "^8.12.0",
