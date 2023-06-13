@@ -2,7 +2,7 @@
   "name": "roar-repackage",
   "version": "1.0.3",
   "description": "Roar refactor test",
-  "main": "./lib/index.js",
+  "main": "lib/index.js",
   "type": "module",
   "files": [
     "./src/assets",
