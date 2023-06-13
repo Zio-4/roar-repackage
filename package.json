@@ -10,7 +10,8 @@
     "./src/index.js",
     "./src/loadAssets.js",
     "./src/logger.js",
-    "./src/timeline.js"
+    "./src/timeline.js",
+    "lib/"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
