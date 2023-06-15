@@ -6,7 +6,6 @@ import Papa from 'papaparse';
 
 // Firebase imports
 import { RoarFirekit } from '@bdelab/roar-firekit';
-import { roarConfig } from './firebaseConfig';
 
 function configTaskInfo() {
   const taskInfo = {
