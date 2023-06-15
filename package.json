@@ -4,13 +4,6 @@
   "description": "Roar refactor test",
   "main": "lib/index.js",
   "files": [
-    "./src/assets",
-    "./src/css",
-    "./src/config.js",
-    "./src/index.js",
-    "./src/loadAssets.js",
-    "./src/logger.js",
-    "./src/timeline.js",
     "lib/"
   ],
   "scripts": {
