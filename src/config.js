@@ -70,6 +70,8 @@ export const initConfig = async (firekit, params) => {
     //   taskInfo,
     // });
 
+    console.log(config.firekit)
+
     await config.firekit.startRun();
   }
 

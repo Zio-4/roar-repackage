@@ -20,7 +20,8 @@
   "license": "Stanford Academic Software License for ROAR",
   "dependencies": {
     "@bdelab/jscat": "^3.0.3",
-    "@bdelab/roar-firekit": "1.1.2",
+    "@bdelab/roar-firekit": "^3.0.2",
+    "@google-cloud/storage": "^6.11.0",
     "@jspsych-contrib/plugin-audio-multi-response": "^1.0.0",
     "@jspsych-contrib/plugin-html-multi-response": "^1.0.2",
     "@jspsych-contrib/plugin-html-swipe-response": "^1.0.0",
@@ -35,6 +36,7 @@
     "@jspsych/plugin-survey-text": "^1.1.0",
     "@jspsych/plugin-video-button-response": "^1.1.2",
     "detect-it": "^4.0.1",
+    "firebase": "^9.22.2",
     "fscreen": "^1.2.0",
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.0.1",
