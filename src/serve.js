@@ -21,7 +21,7 @@ const app = initializeApp(roarConfig.firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const email = 'somethingfdfs@email.com'
+const email = 'somethingfdfdffssfds@email.com'
 const pw = 'Password'
 
 try {
@@ -44,32 +44,34 @@ if (auth.currentUser) {
     console.log({userRef})
 
     const roarUser = new RoarAppUser(userInfo);
+    console.log('roar user: ', roarUser.userRef)
 
     const params = { pid, studyId, classId, schoolId };
-    // const firekit = new RoarAppkit(
-    //     { config: roarConfig,
-    //       userInfo: {
-    //         assessmentUid: pid,
-    //         db
-    //         // classId,
-    //         // schoolId,
-    //         // districtId: '',
-    //         // studyId
-    //       },
-    //       taskInfo: {
-    //         db,
-    //         taskId: 'roar-repackage',
-    //         variantParams: params
-    //       },
-    //       auth
-    //      }
-    //     // TODO: Insert Firekit Params
-    // )
+    const firekit = new RoarAppkit(
+        { config: roarConfig,
+          userInfo: {
+            // @ts-ignore
+            assessmentUid: pid,
+            db,
+            classId,
+            schoolId,
+            districtId: '',
+            studyId
+          },
+          taskInfo: {
+            db,
+            taskId: 'roar-repackage',
+            variantParams: params
+          },
+          auth
+         }
+        // TODO: Insert Firekit Params
+    )
 
-    // // TODO: DB connection instance (firekit)?
-    // const roarApp = new HotDogApp(firekit, params);
+    // TODO: DB connection instance (firekit)?
+    const roarApp = new HotDogApp(firekit, params);
 
-    // roarApp.run();    
+    roarApp.run();    
 } else {
     console.log('No user authed or created')
 }

@@ -26,65 +26,65 @@ export const buildTimeline = (config) => {
     timeline.push(autoPreload)
 
     const videoTrial = {
-    type: jsPsychVideoButtonResponse,
-    stimulus: [
-        carVid
-    ],
-    choices: ["A", "B", "C"],
-    trial_ends_after_video: false,
-    response_allowed_while_playing: false,
-    response_ends_trial: true,
-    controls: true,
-    autoplay: true,
-    width: 300,
-    height: 300,
+        type: jsPsychVideoButtonResponse,
+        stimulus: [
+            carVid
+        ],
+        choices: ["A", "B", "C"],
+        trial_ends_after_video: false,
+        response_allowed_while_playing: false,
+        response_ends_trial: true,
+        controls: true,
+        autoplay: true,
+        width: 300,
+        height: 300,
     }
 
     timeline.push(videoTrial);
 
     const hotDogTrials = {
-    timeline: [
-        {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: '<div style="font-size:60px;">+</div>',
-        choices: 'NO_KEYS',
-        trial_duration: 500,
+        timeline: [
+            {
+                type: jsPsychHtmlKeyboardResponse,
+                stimulus: '<div style="font-size:60px;">+</div>',
+                choices: 'NO_KEYS',
+                trial_duration: 500,
+            },
+            {
+                type: jsPsychHtmlButtonResponse,
+                stimulus: jsPsych.timelineVariable('target'),
+                choices: ['Yes', 'No'],
+                prompt: `
+                    <p>Is this a hot dog?</p>
+                    <p>If yes, click yes button.</p>
+                    <p>If no, click the no button.</p>
+                `,
+                on_load: () => {
+                    const button1 = document.getElementById("jspsych-html-button-response-button-0")
+                    button1.addEventListener('click', () => {
+                    const testAudio = new Audio(correctAudio)
+                    testAudio.play()
+                    setTimeout(() => {
+                        console.log({jsPsych})
+                        jsPsych.finishTrial()
+                    }, 400)
+                    })
+                },
+                response_ends_trial: true,
+                trial_duration: null
+                // data: {
+                //   // Here is where we specify that we should save the trial to Firestore
+                //   save_trial: true,
+                //   // Here we can also specify additional information that we would like stored
+                //   // in this trial in ROAR's Firestore database.
+                // },
+            },
+        ],
+        timeline_variables: allTargets,
+        sample: {
+            type: 'without-replacement',
+            size: 3,
         },
-        {
-        type: jsPsychHtmlButtonResponse,
-        stimulus: jsPsych.timelineVariable('target'),
-        choices: ['Yes', 'No'],
-        prompt: `
-            <p>Is this a hot dog?</p>
-            <p>If yes, click yes button.</p>
-            <p>If no, click the no button.</p>
-        `,
-        on_load: () => {
-            const button1 = document.getElementById("jspsych-html-button-response-button-0")
-            button1.addEventListener('click', () => {
-            const testAudio = new Audio(correctAudio)
-            testAudio.play()
-            setTimeout(() => {
-                console.log({jsPsych})
-                jsPsych.finishTrial()
-            }, 400)
-            })
-        },
-        response_ends_trial: true,
-        trial_duration: null
-        // data: {
-        //   // Here is where we specify that we should save the trial to Firestore
-        //   save_trial: true,
-        //   // Here we can also specify additional information that we would like stored
-        //   // in this trial in ROAR's Firestore database.
-        // },
-        },
-    ],
-    timeline_variables: allTargets,
-    sample: {
-        type: 'without-replacement',
-        size: 3,
-    },
     };
 
 
@@ -111,9 +111,9 @@ export const buildTimeline = (config) => {
 
 
     const exit_fullscreen = {
-    type: jsPsychFullScreen,
-    fullscreen_mode: false,
-    delay_after: 0,
+        type: jsPsychFullScreen,
+        fullscreen_mode: false,
+        delay_after: 0,
     };
 
     timeline.push(exit_fullscreen);

@@ -1,11 +1,11 @@
 /* eslint-disable quote-props */
-const { hashElement } = require('folder-hash');
-const path = require('path');
-const webpack = require('webpack');
+const { hashElement } = require('folder-hash')
+const path = require('path')
+const webpack = require('webpack')
 // eslint-disable-next-line import/no-extraneous-dependencies
-const { merge } = require('webpack-merge');
+const { merge } = require('webpack-merge')
 // eslint-disable-next-line import/no-extraneous-dependencies
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const commonConfig = {
   entry: {

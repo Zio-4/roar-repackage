@@ -24,7 +24,7 @@ function configTaskInfo() {
 
 export const taskInfo = configTaskInfo(); 
 
-export const initConfig = async (firekit, params) => {
+export const initConfig = async (firekit, params, displayElement) => {
   const { pid, studyId, classId, schoolId, urlParams } = params
   // const queryString = new URL(window.location).search;
   // const urlParams = new URLSearchParams(queryString);
@@ -43,6 +43,7 @@ export const initConfig = async (firekit, params) => {
     startTime: new Date(),
     urlParams: urlParams || null,
     firekit: firekit,
+    displayElement: displayElement || null
   };
 
   // If the participant's ID was supplied through the query string, then start the
@@ -112,6 +113,10 @@ export const initRoarJsPsych = (config) => {
       redirect();
     },
   });
+
+  if (config.displayElement) {
+    jsPsych.opts.display_element = config.display_element
+  }
 
   // Extend jsPsych's on_finish and on_data_update lifecycle functions to mark the
   // run as completed and write data to Firestore, respectively.
