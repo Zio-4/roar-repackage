@@ -5,7 +5,7 @@ import { roarConfig } from "./firebaseConfig";
 import { initializeApp } from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { getFirestore, doc } from 'firebase/firestore'
-
+import { faker } from '@faker-js/faker'
 
 //@ts-ignore
 const queryString = new URL(window.location).search;
@@ -21,8 +21,9 @@ const app = initializeApp(roarConfig.firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const email = 'somethingfdfdffssfds@email.com'
-const pw = 'Password'
+
+const email = faker.internet.email()
+const pw = faker.internet.password()
 
 try {
     const tempUser = await createUserWithEmailAndPassword(auth, email, pw)

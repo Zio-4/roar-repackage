@@ -23,9 +23,8 @@ export class HotDogApp {
   }
 } 
 
-// generateAssetObject(jsonFile, bucketURI, lng, device)
-
-// const preloadTrials = generatePreloadTrials(jsonFile, bucketURI, lng, device)
+// const assetObj = generateAssetObject(assets, 'google.com/bucket/')
+// const preloadTrials = createPreloadTrials(assets, 'google')
 
 // const timeline = []
 
@@ -37,10 +36,20 @@ export class HotDogApp {
 // timeline.push(preloadTrials.group3)
 
 
+assetObj.images.lion1
+
+{
+  images: {
+    lion1: 'bucketURI/path/to/lion1'
+  }
+}
+
+
 // const params =  {
 //   id,
 //   studentId,
 //   ...etc,
+//   language
 //   firekit,
 //   timeline
 // }

@@ -20,7 +20,7 @@
   "license": "Stanford Academic Software License for ROAR",
   "dependencies": {
     "@bdelab/jscat": "^3.0.3",
-    "@bdelab/roar-firekit": "^3.0.17",
+    "@bdelab/roar-firekit": "^3.0.21",
     "@jspsych-contrib/plugin-audio-multi-response": "^1.0.0",
     "@jspsych-contrib/plugin-html-multi-response": "^1.0.2",
     "@jspsych-contrib/plugin-html-swipe-response": "^1.0.0",
@@ -48,6 +48,7 @@
     "@babel/cli": "^7.22.5",
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
+    "@faker-js/faker": "^8.0.2",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.1",
     "eslint": "^8.12.0",
