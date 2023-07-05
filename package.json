@@ -20,7 +20,7 @@
   "license": "Stanford Academic Software License for ROAR",
   "dependencies": {
     "@bdelab/jscat": "^3.0.3",
-    "@bdelab/roar-firekit": "^3.0.21",
+    "@bdelab/roar-firekit": "^3.2.2",
     "@jspsych-contrib/plugin-audio-multi-response": "^1.0.0",
     "@jspsych-contrib/plugin-html-multi-response": "^1.0.2",
     "@jspsych-contrib/plugin-html-swipe-response": "^1.0.0",
