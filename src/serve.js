@@ -13,8 +13,6 @@ const studyId = urlParams.get('studyId') || null;
 const classId = urlParams.get('classId') || null;
 const schoolId = urlParams.get('schoolId') || null;
 
-console.log('roarConfig: ', roarConfig.firebaseConfig)
-
 const appKit = await initializeProject(roarConfig.firebaseConfig, 'assessmentApp');
 
 const email = faker.internet.email();
