@@ -4,9 +4,6 @@ import jsPsychFullScreen from '@jspsych/plugin-fullscreen';
 import jsPsychSurveyText from '@jspsych/plugin-survey-text';
 import Papa from 'papaparse';
 
-// Firebase imports
-import { RoarFirekit } from '@bdelab/roar-firekit';
-
 function configTaskInfo() {
   const taskInfo = {
     taskId: 'my-roar-app',
@@ -14,9 +11,6 @@ function configTaskInfo() {
     variantName: 'default',
     taskDescription: 'Minimal working example of a ROAR-mep app',
     variantDescription: 'default',
-    // eslint-disable-next-line no-undef
-    // srcHash: SRC_HASH,
-    srcHash: ''
   };
 
   return taskInfo;
@@ -26,19 +20,13 @@ export const taskInfo = configTaskInfo();
 
 export const initConfig = async (firekit, params, displayElement) => {
   const { pid, studyId, classId, schoolId, urlParams } = params
-  // const queryString = new URL(window.location).search;
-  // const urlParams = new URLSearchParams(queryString);
-  // const pid = urlParams.get('participant') || null;
-  // const studyId = urlParams.get('studyId') || null;
-  // const classId = urlParams.get('classId') || null;
-  // const schoolId = urlParams.get('schoolId') || null;
 
   const config = {
     pid: pid,
     studyId: studyId,
     classId: classId,
     schoolId: schoolId,
-    // TODO (optional): You can add additional user metadata here
+    // (optional): You can add additional user metadata here
     userMetadata: {},
     startTime: new Date(),
     urlParams: urlParams || null,
@@ -57,23 +45,7 @@ export const initConfig = async (firekit, params, displayElement) => {
       userMetadata: config.userMetadata,
     };
 
-    config.firekit.userInfo = userInfo
-
-    // config.firekit.updateUser()
-
-    config.firekit.taskInfo = taskInfo
-
-    // config.firekit.updateTask()
-
-    // config.firekit = new RoarFirekit({
-    //   config: roarConfig,
-    //   userInfo: userInfo,
-    //   taskInfo,
-    // });
-
-    console.log(config.firekit)
-
-    await config.firekit.startRun();
+    await config.firekit.updateUser({ assessmentPid: config.pid, ...userMetadata });
   }
 
   return config;
@@ -211,7 +183,8 @@ export const initRoarTimeline = (config) => {
     },
     on_timeline_finish: async () => {
       const userInfo = {
-        id: [config.schoolId, config.classId, config.pid].join('-'),
+        orgPreprendedAssessmentPid: [config.schoolId, config.classId, config.pid].join('-'),
+        assessmentPid: config.pid,
         studyId: config.studyId || null,
         classId: config.classId || null,
         schoolId: config.schoolId || null,
@@ -222,13 +195,8 @@ export const initRoarTimeline = (config) => {
 
       config.firekit.userInfo = userInfo
       config.firekit.taskInfo = taskInfo
-      // config.firekit = new RoarFirekit({
-      //   config: config.firekit.config,
-      //   userInfo: config.firekit.userInfo,
-      //   taskInfo,
-      // });
 
-      await config.firekit.startRun();
+      await config.firekit.updateUser(userInfo)
     },
   };
 
