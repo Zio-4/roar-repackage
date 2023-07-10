@@ -1,11 +1,8 @@
 // @ts-check
 import { HotDogApp } from "./index";
-import { RoarAppkit, RoarAppUser } from '@bdelab/roar-firekit';
+import { RoarAppkit, initializeFirebaseProject } from '@bdelab/roar-firekit';
 import { roarConfig } from "./firebaseConfig";
-import { initializeApp } from 'firebase/app'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
-import { getFirestore, doc } from 'firebase/firestore'
-import { faker } from '@faker-js/faker'
+import { onAuthStateChanged, signInAnonymously } from 'firebase/auth'
 
 //@ts-ignore
 const queryString = new URL(window.location).search;
@@ -15,64 +12,38 @@ const studyId = urlParams.get('studyId') || null;
 const classId = urlParams.get('classId') || null;
 const schoolId = urlParams.get('schoolId') || null;
 
-console.log('roarConfig: ', roarConfig.firebaseConfig)
+// @ts-ignore
+const appKit = await initializeFirebaseProject(roarConfig.firebaseConfig, 'assessmentApp', 'none');
 
-const app = initializeApp(roarConfig.firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+onAuthStateChanged(appKit.auth, (user) => {
+    if (user) {
+        const userInfo = {
+            assessmentPid: pid || "test-pid",
+            assessmentUid: user.uid,
+            userMetadata: {
+                classId,
+                schoolId,
+                districtId: '',
+                studyId
+            },
+        };
 
-
-const email = faker.internet.email()
-const pw = faker.internet.password()
-
-try {
-    const tempUser = await createUserWithEmailAndPassword(auth, email, pw)
-} catch (error) {
-    console.error(error)
-}
-
-if (auth.currentUser) {
-    const userInfo = {
-        assessmentPid: pid || "test-pid",
-        assessmentUid: auth.currentUser?.uid,
-        db,
-    };
-
-    // console.log('Passes firebase functions')
-
-    const userRef = doc(db, "users", userInfo.assessmentUid)
-
-    console.log({userRef})
-
-    const roarUser = new RoarAppUser(userInfo);
-    console.log('roar user: ', roarUser.userRef)
-
-    const params = { pid, studyId, classId, schoolId };
-    const firekit = new RoarAppkit(
-        { config: roarConfig,
-          userInfo: {
-            // @ts-ignore
-            assessmentUid: pid,
-            db,
-            classId,
-            schoolId,
-            districtId: '',
-            studyId
-          },
-          taskInfo: {
-            db,
+        const params = { pid, studyId, classId, schoolId, randomField: 42 };
+        const taskInfo = {
             taskId: 'roar-repackage',
-            variantParams: params
-          },
-          auth
-         }
-        // TODO: Insert Firekit Params
-    )
+            variantParams: params,
+        }
 
-    // TODO: DB connection instance (firekit)?
-    const roarApp = new HotDogApp(firekit, params);
+        const firekit = new RoarAppkit({
+            firebaseProject: appKit,
+            taskInfo,
+            userInfo,
+        })
 
-    roarApp.run();    
-} else {
-    console.log('No user authed or created')
-}
+        const roarApp = new HotDogApp(firekit, params);
+
+        roarApp.run();
+    }
+});
+
+await signInAnonymously(appKit.auth);
